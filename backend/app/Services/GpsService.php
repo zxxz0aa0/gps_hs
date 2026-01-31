@@ -45,8 +45,8 @@ class GpsService
 
                     $rawTime = $row[0] ?? null;
                     $location = $row[1] ?? null;
-                    $longitude = $row[2] ?? null;
-                    $latitude = $row[3] ?? null;
+                    $longitude = $row[7] ?? null;
+                    $latitude = $row[8] ?? null;
 
                     if (!$rawTime) continue;
 
@@ -139,6 +139,15 @@ class GpsService
             'fleet_number' => null
         ];
 
+        // Format: 車牌及駕駛人TDU-7330,柯清龍5193
+        if (preg_match('/車牌及駕駛人\s*([A-Z0-9\-]+)\s*,\s*([\p{L}]+)(\d+)/u', $text, $matches)) {
+            $info['license_plate'] = trim($matches[1]);
+            $info['driver_name'] = trim($matches[2]);
+            $info['fleet_number'] = trim($matches[3]);
+            return $info;
+        }
+
+        // Fallback: original patterns
         if (preg_match('/(?:車牌(?:號碼)?|License|Plate)[:\s：]*([A-Z0-9\-]+)/ui', $text, $matches)) {
             $info['license_plate'] = trim($matches[1]);
         }
