@@ -5,10 +5,10 @@
 <template>
   <div id="app-layout">
     <nav class="navbar">
-      <div class="brand">GPS History System</div>
+      <div class="brand"><span class="icon">🛰️</span>大豐軌跡查詢系統</div>
       <div class="links">
-        <router-link to="/upload" class="nav-link" active-class="active">Upload</router-link>
-        <router-link to="/query" class="nav-link" active-class="active">Track Query</router-link>
+        <router-link to="/upload" class="nav-link" active-class="active">上傳</router-link>
+        <router-link to="/query" class="nav-link" active-class="active">查詢</router-link>
       </div>
     </nav>
     

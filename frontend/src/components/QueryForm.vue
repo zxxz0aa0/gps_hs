@@ -42,68 +42,81 @@ onMounted(() => {
 <template>
     <div class="query-form">
         <div class="form-group">
-            <label>License Plate:</label>
+            <label>車牌號碼</label>
             <select v-model="licensePlate" :disabled="isLoadingVehicles">
-                <option value="">-- Select Vehicle --</option>
+                <option value="">-- 選擇車輛 --</option>
                 <option v-for="v in vehicles" :key="v.license_plate" :value="v.license_plate">
                     {{ v.license_plate }} ({{ v.driver_name || 'N/A' }})
                 </option>
             </select>
         </div>
-        <div class="form-group">
-            <label>Start Date:</label>
-            <input v-model="startDate" type="date" />
+        <div class="form-group-pair">
+            <label>開始時間</label>
+            <div class="input-pair">
+                <input v-model="startDate" type="date" />
+                <input v-model="startTime" type="time" />
+            </div>
         </div>
-        <div class="form-group">
-            <label>Start Time:</label>
-            <input v-model="startTime" type="time" />
+        <div class="form-group-pair">
+            <label>結束時間</label>
+            <div class="input-pair">
+                <input v-model="endDate" type="date" />
+                <input v-model="endTime" type="time" />
+            </div>
         </div>
-        <div class="form-group">
-            <label>End Date:</label>
-            <input v-model="endDate" type="date" />
-        </div>
-        <div class="form-group">
-            <label>End Time:</label>
-            <input v-model="endTime" type="time" />
-        </div>
-        <button @click="onSearch" class="search-btn" :disabled="!licensePlate">Search</button>
+        <button @click="onSearch" class="search-btn" :disabled="!licensePlate">查詢</button>
     </div>
 </template>
 
 <style scoped>
 .query-form {
     display: flex;
-    gap: 15px;
+    gap: 20px;
     align-items: flex-end;
     background: #fff;
-    padding: 15px;
+    padding: 16px 20px;
     border-radius: 8px;
     box-shadow: 0 2px 4px rgba(0,0,0,0.1);
     margin-bottom: 20px;
     flex-wrap: wrap;
 }
-.form-group {
+.form-group,
+.form-group-pair {
     display: flex;
     flex-direction: column;
 }
+.input-pair {
+    display: flex;
+    gap: 8px;
+}
+.input-pair input[type="date"] {
+    min-width: 140px;
+}
+.input-pair input[type="time"] {
+    min-width: 100px;
+}
 label {
-    font-size: 0.9em;
-    margin-bottom: 5px;
-    color: #666;
+    font-size: 0.85em;
+    margin-bottom: 6px;
+    color: #555;
+    font-weight: 500;
 }
 input, select {
-    padding: 8px;
+    padding: 8px 10px;
     border: 1px solid #ddd;
     border-radius: 4px;
-    min-width: 150px;
+}
+select {
+    min-width: 180px;
 }
 .search-btn {
-    padding: 8px 20px;
+    padding: 8px 24px;
     background-color: #007bff;
     color: white;
     border: none;
     border-radius: 4px;
     cursor: pointer;
+    font-weight: 500;
 }
 .search-btn:hover:not(:disabled) {
     background-color: #0056b3;
