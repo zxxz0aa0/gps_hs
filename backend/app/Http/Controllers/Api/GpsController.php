@@ -38,10 +38,10 @@ class GpsController extends Controller
 
     public function index(Request $request)
     {
-        // /api/tracks?license_plate=ABC-123&start_date=2023-01-01
         $filters = $request->only(['license_plate', 'start_date', 'end_date']);
-        $tracks = $this->gpsService->getTracks($filters);
-        
+        $perPage = $request->integer('per_page') ?: null;
+        $tracks = $this->gpsService->getTracks($filters, $perPage);
+
         return response()->json($tracks);
     }
 

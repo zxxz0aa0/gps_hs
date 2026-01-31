@@ -2,17 +2,18 @@
 
 namespace App\Imports;
 
-use Illuminate\Support\Collection;
-use Maatwebsite\Excel\Concerns\ToCollection;
+use Maatwebsite\Excel\Concerns\ToArray;
+use Maatwebsite\Excel\Concerns\WithMultipleSheets;
 
-class GpsImport implements ToCollection
+class GpsImport implements ToArray, WithMultipleSheets
 {
-    /**
-    * @param Collection $collection
-    */
-    public function collection(Collection $collection)
+    public function array(array $array): void
     {
-        // This method is required by the interface but we handle logic in the Service
-        // using Excel::toArray() to support flexible multi-sheet processing.
+        // Data processing handled in GpsService via Excel::toArray()
+    }
+
+    public function sheets(): array
+    {
+        return [new self()];
     }
 }
