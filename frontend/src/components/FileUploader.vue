@@ -34,7 +34,7 @@ const handleFileUpload = async () => {
 
 <template>
     <div class="file-uploader">
-        <h3>Upload GPS Excel File</h3>
+        <h3 style="color:gray;">Upload GPS Excel File</h3>
         <div class="upload-area">
             <input type="file" ref="fileInput" accept=".xlsx, .xls" @change="handleFileUpload" :disabled="isUploading" />
         </div>
@@ -49,11 +49,13 @@ const handleFileUpload = async () => {
     padding: 20px;
     border: 2px dashed #ccc;
     border-radius: 8px;
-    text-align: center;
+    text-align: left;
     background-color: #f9f9f9;
 }
 .upload-area {
     margin: 20px 0;
+    display: flex;
+    justify-content: flex-start;
 }
 .status-message {
     margin-top: 10px;
@@ -61,6 +63,9 @@ const handleFileUpload = async () => {
     color: green;
 }
 .status-message.error {
+    color: red;
+}
+input[type="file"] {
     color: red;
 }
 </style>

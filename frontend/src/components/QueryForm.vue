@@ -74,10 +74,7 @@ onMounted(() => {
     gap: 20px;
     align-items: flex-end;
     background: #fff;
-    padding: 16px 20px;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-    margin-bottom: 20px;
+    padding: 10px 187px;
     flex-wrap: wrap;
 }
 .form-group,

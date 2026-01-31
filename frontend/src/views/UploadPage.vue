@@ -4,8 +4,8 @@ import FileUploader from '../components/FileUploader.vue';
 
 <template>
     <div class="page-container">
-        <h2>Data Upload</h2>
-        <p class="description">Upload your GPS Excel files here. The system will parse and store the daily track records.</p>
+        <h2 style="color: #333;">檔案上傳</h2>
+        <p class="description">請點選上傳按鈕，選擇要上傳的GPS Excel檔案。</p>
         <FileUploader />
     </div>
 </template>

@@ -15,6 +15,16 @@ const { list, containerProps, wrapperProps } = useVirtualList(tracks, {
     itemHeight: 60
 });
 
+const formatDate = (dateStr) => {
+    if (!dateStr) return '';
+    return dateStr.slice(0, 10);
+};
+
+const formatTime = (timeStr) => {
+    if (!timeStr) return '';
+    return timeStr.slice(0, 5);
+};
+
 const handlePointClick = (track, index) => {
     selectedIndex.value = index;
     mapRef.value?.highlightPoint(track);
@@ -105,7 +115,7 @@ const handleSearch = async (params) => {
                         >
                             <div class="item-icon">📍</div>
                             <div class="item-content">
-                                <div class="track-time">{{ track.date }} {{ track.time }}</div>
+                                <div class="track-time">{{ formatDate(track.date) }} {{ formatTime(track.time) }}</div>
                                 <div class="track-location" :title="track.location">
                                     {{ track.location || '未知地址' }}
                                 </div>
@@ -126,7 +136,7 @@ const handleSearch = async (params) => {
 /* Page Layout */
 .page-container {
     max-width: 100%;
-    height: 100vh;
+    height: 100%;
     display: flex;
     flex-direction: column;
     background-color: #f0f2f5;
@@ -135,8 +145,8 @@ const handleSearch = async (params) => {
 
 /* Header Section */
 .header-section {
-    padding: 16px 24px;
-    background: #ffffff;
+    padding: 0px 0px;
+    background: #480d0d;
     box-shadow: 0 2px 8px rgba(0,0,0,0.05);
     z-index: 10;
     flex-shrink: 0;
@@ -167,7 +177,7 @@ const handleSearch = async (params) => {
 
 /* Sidebar Panel */
 .sidebar-panel {
-    width: 360px;
+    width: 270px;
     background: #ffffff;
     border-right: 1px solid #e0e0e0;
     display: flex;

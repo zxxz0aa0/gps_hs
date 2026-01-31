@@ -19,13 +19,22 @@
 </template>
 
 <style scoped>
+#app-layout {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  overflow: hidden;
+}
+
 .navbar {
   display: flex;
   justify-content: space-between;
   align-items: center;
   background-color: #333;
-  padding: 1rem 2rem;
+  padding: 0 2rem;
+  height: 50px;
   color: white;
+  flex-shrink: 0;
 }
 .brand {
     font-size: 1.2rem;
@@ -49,6 +58,9 @@
 }
 .content {
     background-color: #f0f2f5;
-    min-height: calc(100vh - 60px);
+    flex: 1;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
 }
 </style>
