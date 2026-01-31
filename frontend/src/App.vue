@@ -1,30 +1,54 @@
 <script setup>
-import HelloWorld from './components/HelloWorld.vue'
+// Layout wrapper can go here
 </script>
 
 <template>
-  <div>
-    <a href="https://vite.dev" target="_blank">
-      <img src="/vite.svg" class="logo" alt="Vite logo" />
-    </a>
-    <a href="https://vuejs.org/" target="_blank">
-      <img src="./assets/vue.svg" class="logo vue" alt="Vue logo" />
-    </a>
+  <div id="app-layout">
+    <nav class="navbar">
+      <div class="brand">GPS History System</div>
+      <div class="links">
+        <router-link to="/upload" class="nav-link" active-class="active">Upload</router-link>
+        <router-link to="/query" class="nav-link" active-class="active">Track Query</router-link>
+      </div>
+    </nav>
+    
+    <main class="content">
+      <router-view></router-view>
+    </main>
   </div>
-  <HelloWorld msg="Vite + Vue" />
 </template>
 
 <style scoped>
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #333;
+  padding: 1rem 2rem;
+  color: white;
 }
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
+.brand {
+    font-size: 1.2rem;
+    font-weight: bold;
 }
-.logo.vue:hover {
-  filter: drop-shadow(0 0 2em #42b883aa);
+.links {
+    display: flex;
+    gap: 20px;
+}
+.nav-link {
+    color: #ccc;
+    text-decoration: none;
+    font-weight: 500;
+}
+.nav-link:hover {
+    color: white;
+}
+.nav-link.active {
+    color: #fff;
+    border-bottom: 2px solid #FF8C00;
+}
+.content {
+    background-color: #f0f2f5;
+    min-height: calc(100vh - 60px);
 }
 </style>
