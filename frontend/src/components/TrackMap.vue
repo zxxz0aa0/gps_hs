@@ -1,6 +1,6 @@
 <script setup>
 import { onMounted, ref, watch } from 'vue';
-import { Loader } from "@googlemaps/js-api-loader";
+import { setOptions, importLibrary } from "@googlemaps/js-api-loader";
 
 const props = defineProps({
     tracks: {
@@ -25,13 +25,13 @@ const initMap = async () => {
         return;
     }
 
-    const loader = new Loader({
-        apiKey: apiKey,
-        version: "weekly",
+    setOptions({
+        key: apiKey,
+        v: "weekly",
     });
 
     try {
-        const { Map } = await loader.importLibrary("maps");
+        const { Map } = await importLibrary("maps");
 
         map = new Map(mapDiv.value, {
             center: { lat: 25.0330, lng: 121.5654 },
