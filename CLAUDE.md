@@ -14,12 +14,12 @@
 
 | 類別 | 規範 |
 |------|------|
-| Core Framework | 尚未建立 |
-| Language Specifics | 尚未建立 |
-| Backend & API | 尚未建立 |
-| Database & State | 尚未建立 |
-| Infrastructure | 尚未建立 |
-| UI/UX Library | 尚未建立 |
+| Core Framework | Laravel 12 (Backend) / Vue 3.5 (Frontend) |
+| Language Specifics | PHP 8.2+ / JavaScript ES Module |
+| Backend & API | Laravel Sanctum, RESTful API |
+| Database & State | SQLite, maatwebsite/excel |
+| Infrastructure | Vite 7, Laravel Sail |
+| UI/UX Library | Vue Router 5, VueUse, Google Maps API |
 
 ## 3. Coding Standards
 

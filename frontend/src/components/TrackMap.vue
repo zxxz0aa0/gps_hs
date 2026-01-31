@@ -16,6 +16,7 @@ const isMapReady = ref(false);
 let map = null;
 let polyline = null;
 let markers = [];
+let highlightMarker = null;
 
 const initMap = async () => {
     const apiKey = import.meta.env.VITE_GOOGLE_MAPS_API_KEY;
@@ -142,6 +143,56 @@ onMounted(() => {
 watch(() => props.tracks, () => {
     drawTracks();
 }, { deep: true });
+
+const highlightPoint = async (track) => {
+    if (!map || !isMapReady.value || !track) return;
+
+    // Clear previous highlight marker
+    if (highlightMarker) {
+        highlightMarker.map = null;
+        highlightMarker = null;
+    }
+
+    const position = {
+        lat: parseFloat(track.latitude),
+        lng: parseFloat(track.longitude)
+    };
+
+    try {
+        const { AdvancedMarkerElement, PinElement } = await google.maps.importLibrary("marker");
+
+        const pin = new PinElement({
+            background: '#1E90FF',
+            borderColor: '#0066CC',
+            glyphColor: '#FFFFFF',
+            scale: 1.3
+        });
+
+        highlightMarker = new AdvancedMarkerElement({
+            position,
+            map,
+            title: track.location || '',
+            content: pin.element,
+            zIndex: 1000
+        });
+    } catch (e) {
+        const { Marker } = await google.maps.importLibrary("marker");
+        highlightMarker = new Marker({
+            position,
+            map,
+            title: track.location || '',
+            icon: {
+                url: 'http://maps.google.com/mapfiles/ms/icons/blue-dot.png'
+            },
+            zIndex: 1000
+        });
+    }
+
+    map.panTo(position);
+    map.setZoom(16);
+};
+
+defineExpose({ highlightPoint });
 </script>
 
 <template>

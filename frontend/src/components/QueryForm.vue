@@ -8,6 +8,8 @@ const vehicles = ref([]);
 const licensePlate = ref('');
 const startDate = ref('');
 const endDate = ref('');
+const startTime = ref('');
+const endTime = ref('');
 const isLoadingVehicles = ref(false);
 
 const fetchVehicles = async () => {
@@ -26,7 +28,9 @@ const onSearch = () => {
     emit('search', {
         license_plate: licensePlate.value,
         start_date: startDate.value,
-        end_date: endDate.value
+        end_date: endDate.value,
+        start_time: startTime.value,
+        end_time: endTime.value
     });
 };
 
@@ -51,8 +55,16 @@ onMounted(() => {
             <input v-model="startDate" type="date" />
         </div>
         <div class="form-group">
+            <label>Start Time:</label>
+            <input v-model="startTime" type="time" />
+        </div>
+        <div class="form-group">
             <label>End Date:</label>
             <input v-model="endDate" type="date" />
+        </div>
+        <div class="form-group">
+            <label>End Time:</label>
+            <input v-model="endTime" type="time" />
         </div>
         <button @click="onSearch" class="search-btn" :disabled="!licensePlate">Search</button>
     </div>

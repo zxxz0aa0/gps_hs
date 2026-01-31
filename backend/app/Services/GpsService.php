@@ -191,12 +191,23 @@ class GpsService
             $query->where('license_plate', $filters['license_plate']);
         }
 
+        // 完整時間戳篩選：組合 date + time 進行比較
         if (!empty($filters['start_date'])) {
-            $query->where('date', '>=', $filters['start_date']);
+            if (!empty($filters['start_time'])) {
+                $startDateTime = $filters['start_date'] . ' ' . $filters['start_time'];
+                $query->whereRaw("CONCAT(date, ' ', time) >= ?", [$startDateTime]);
+            } else {
+                $query->where('date', '>=', $filters['start_date']);
+            }
         }
 
         if (!empty($filters['end_date'])) {
-            $query->where('date', '<=', $filters['end_date']);
+            if (!empty($filters['end_time'])) {
+                $endDateTime = $filters['end_date'] . ' ' . $filters['end_time'];
+                $query->whereRaw("CONCAT(date, ' ', time) <= ?", [$endDateTime]);
+            } else {
+                $query->where('date', '<=', $filters['end_date']);
+            }
         }
 
         $query->orderBy('date')->orderBy('time');
