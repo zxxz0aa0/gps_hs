@@ -109,11 +109,8 @@ class GpsService
      */
     private function insertIgnoreDuplicates(array $records): int
     {
-        $countBefore = GpsRecord::count();
-        GpsRecord::insertOrIgnore($records);
-        $countAfter = GpsRecord::count();
-
-        return $countAfter - $countBefore;
+        $result = GpsRecord::insertOrIgnore($records);
+        return $result;
     }
 
     /**

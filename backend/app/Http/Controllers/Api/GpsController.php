@@ -17,6 +17,8 @@ class GpsController extends Controller
 
     public function upload(Request $request)
     {
+        set_time_limit(300);
+
         $request->validate([
             'file' => 'required|file|mimes:xls,xlsx,csv'
         ]);
