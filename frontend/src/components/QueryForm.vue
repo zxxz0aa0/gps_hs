@@ -46,7 +46,7 @@ onMounted(() => {
             <select v-model="licensePlate" :disabled="isLoadingVehicles">
                 <option value="">-- 選擇車輛 --</option>
                 <option v-for="v in vehicles" :key="v.license_plate" :value="v.license_plate">
-                    {{ v.license_plate }} ({{ v.driver_name || 'N/A' }})
+                    {{ v.fleet_number}}-({{ v.license_plate }})
                 </option>
             </select>
         </div>
