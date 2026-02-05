@@ -1,14 +1,20 @@
 <?php
 
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Api\AuthController;
+use App\Http\Controllers\Api\GpsController;
 
-Route::get('/user', function (Request $request) {
-    return $request->user();
-})->middleware('auth:sanctum');
+// 公開路由
+Route::post('/register', [AuthController::class, 'register']);
+Route::post('/login', [AuthController::class, 'login']);
 
-// GPS Tracking Routes
-Route::post('/upload', [\App\Http\Controllers\Api\GpsController::class, 'upload']);
-Route::get('/tracks', [\App\Http\Controllers\Api\GpsController::class, 'index']);
-Route::get('/vehicles', [\App\Http\Controllers\Api\GpsController::class, 'vehicles']);
+// 受保護路由
+Route::middleware('auth:sanctum')->group(function () {
+    Route::post('/logout', [AuthController::class, 'logout']);
+    Route::get('/user', [AuthController::class, 'user']);
 
+    // GPS Tracking Routes
+    Route::post('/upload', [GpsController::class, 'upload']);
+    Route::get('/tracks', [GpsController::class, 'index']);
+    Route::get('/vehicles', [GpsController::class, 'vehicles']);
+});
