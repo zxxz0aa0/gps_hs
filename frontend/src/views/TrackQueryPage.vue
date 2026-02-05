@@ -145,15 +145,14 @@ const handleSearch = async (params) => {
 
 /* Header Section */
 .header-section {
-    padding: 0px 0px;
-    background: #480d0d;
+    padding: 0;
     box-shadow: 0 2px 8px rgba(0,0,0,0.05);
     z-index: 10;
     flex-shrink: 0;
-    display: flex;
-    align-items: center;
-    gap: 24px;
-    justify-content: space-between;
+}
+
+.query-card {
+    width: 100%;
 }
 
 .page-title {

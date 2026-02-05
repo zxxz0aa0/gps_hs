@@ -9,4 +9,20 @@ const api = axios.create({
     withCredentials: true
 });
 
+api.interceptors.response.use(
+    (response) => response,
+    (error) => {
+        if (error.response?.status === 401) {
+            import('../stores/authStore').then(({ default: authStore }) => {
+                authStore.clearAuth();
+            });
+
+            if (!window.location.pathname.includes('/login')) {
+                window.location.href = '/login';
+            }
+        }
+        return Promise.reject(error);
+    }
+);
+
 export default api;

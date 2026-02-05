@@ -14,17 +14,17 @@ trigger: always_on
 2. Tech Stack Context
 請在開始任何任務前，確認並遵循以下技術棧規範：
 
-Core Framework: [尚未建立]
+Core Framework: Laravel 12 (Backend) / Vue 3.5 (Frontend)
 
-Language Specifics: [尚未建立]
+Language Specifics: PHP 8.2+ / JavaScript ES Modules
 
-Backend & API: [尚未建立]
+Backend & API: Laravel Sanctum, RESTful API
 
-Database & State: [尚未建立]
+Database & State: SQLite, maatwebsite/excel
 
-Infrastructure: [尚未建立]
+Infrastructure: Vite 7, Laravel Sail
 
-UI/UX Library: [尚未建立]
+UI/UX Library: Vue Router 5, VueUse, Google Maps API
 
 3. Coding Standards
 所有產出的程式碼必須嚴格遵守以下標準：

@@ -74,8 +74,11 @@ onMounted(() => {
     gap: 20px;
     align-items: flex-end;
     background: #fff;
-    padding: 10px 187px;
+    padding: 10px 24px;
     flex-wrap: wrap;
+    width: 100%;
+    box-sizing: border-box;
+    justify-content: center;
 }
 .form-group,
 .form-group-pair {

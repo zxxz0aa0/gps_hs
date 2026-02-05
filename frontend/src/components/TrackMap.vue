@@ -207,10 +207,13 @@ defineExpose({ highlightPoint });
 <style scoped>
 .map-wrapper {
     position: relative;
+    width: 100%;
+    height: 100%;
 }
 .google-map {
     width: 100%;
-    height: 500px;
+    height: 100%;
+    min-height: 400px;
     background-color: #eee;
     border-radius: 8px;
 }
