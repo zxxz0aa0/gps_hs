@@ -14,7 +14,7 @@ async function handleLogin() {
 
     try {
         await authStore.login(form.value);
-        router.push('/upload');
+        router.push('/query');
     } catch (error) {
         errorMessage.value = error.response?.data?.message
             || error.response?.data?.errors?.name?.[0]

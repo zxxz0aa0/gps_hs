@@ -4,7 +4,7 @@ import authStore from '../stores/authStore';
 const routes = [
     {
         path: '/',
-        redirect: '/upload'
+        redirect: '/query'
     },
     {
         path: '/login',
@@ -52,7 +52,7 @@ router.beforeEach(async (to, from, next) => {
     }
 
     if (to.meta.guest && isAuthenticated) {
-        return next({ name: 'Upload' });
+        return next({ name: 'Query' });
     }
 
     next();
